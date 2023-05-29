@@ -261,7 +261,7 @@ document.addEventListener('keydown', () => {
 
 })
 
-let Title = new EditableText(document.querySelector('#title'));
+let Title = new </script>EditableText(document.querySelector('#title'));
 let subTitle = new EditableText(document.querySelector('#subtitle'));
 
 let thumnail = new ClickAbleImage(document.querySelector('#thumnail'));

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -403,7 +404,16 @@
                             id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
-                                src="<?=session()->get('google_user_image')?>" alt="Header Avatar">
+                                src="<?php 
+                                    //bring the image from the database
+                                    $image = session()->get('avatar');
+                                    if(strpos($image, 'http') !== false){
+                                        echo $image;
+                                    }else{
+                                        echo base_url() . 'Profiles/Images/' . $image;
+                                    }
+                                
+                                ?>" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>

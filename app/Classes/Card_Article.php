@@ -32,7 +32,7 @@ class Card_Article
     public function getCard()
     {
 
-        $card = '<a href="'.$this->btn_href.'"><div class="card">';
+        $card = '<a href="'.$this->btn_href.'"><div class="card card-article">';
         $card .= '<img class="card-img-top img-fluid" src="' . $this->img_src . '" alt="Card image cap">';
         $card .= '<div class="card-body">';
         $card .= '<h4 class="card-title">' . $this->title . '</h4>';
@@ -67,8 +67,8 @@ class Card_Article
 ?>
 <script type="module">
     $(document).ready(function() {
-        $('.card').css('transition', 'all .3s ease');
-        $('.card').hover(
+        $('.card-article').css('transition', 'all .3s ease');
+        $('.card-article').hover(
             function() {
                 $(this).addClass('shadow-lg').css('cursor', 'pointer');
                 $(this).css('transform','translateY(-10px)');

@@ -52,8 +52,17 @@ class Login extends BaseController
 
             $usersModel = model('UsersModel');
             $user = $usersModel->where('email', $email)->first();
+
+            //TODO:Fix the insert for the image
             if(!$user)
-                $usersModel->insert(['email' => $email, 'firstname' => $firstname,'lastname'=>$lastname,'username'=>$username, 'role' => 0,'avatar'=>$picture]);
+                $usersModel->insert(
+                    ['email' => $email,
+                     'firstname' => $firstname,
+                     'lastname'=>$lastname,
+                     'username'=>$username,
+                    'role' => 0,
+                      'avatar'=>$picture]
+                );
             
             $user = $usersModel->where('email', $email)->first();
             $session = session();
@@ -69,6 +78,7 @@ class Login extends BaseController
             $session->set('role', $role);
             $session->set('user_id', $user['id']);
             $session->set('is_logged_in', true);
+            $session->set('avatar',$user['avatar']);
 
             return redirect()->to('/');
         }

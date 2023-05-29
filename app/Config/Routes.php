@@ -57,6 +57,8 @@ $routes->get('/modify_Article/(:num)', 'ArticlesController::modify_Article/$1');
 $routes->get('/articles/not_found', 'ArticlesController::not_found');
 //! Users Routing
 $routes->get('/profile', 'UserController::show_Profile');
+$routes->get('/profile/M', 'UserController::edit_Profile');
+
 
 //! Login Routing
 $routes->get('/login', 'Login::index');
