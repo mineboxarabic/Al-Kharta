@@ -25,7 +25,12 @@ class ArticlesController extends BaseController
 
     public function create_Article()
     {
-        return view('Articles/create_Article');
+        $catergoryModel = model('CategoryModel');
+        $categories = $catergoryModel->findAll();
+        $data = [
+            'categories' => $categories
+        ];
+        return view('Articles/create_Article', $data);
     }
 
     public function show_Articles()
@@ -55,40 +60,59 @@ class ArticlesController extends BaseController
 
     public function add_Article(){
         helper(['form', 'url']);
-        $title = $this->request->getVar('title');
-        $subtitle = $this->request->getVar('subtitle');
-        $content = $this->request->getVar('editor');
-        $writer = session()->get('user_id');
-        //Validaate image upload
-        $thumnail = $this->request->getFile('thumnail');
-       // $newName = "Default_Image.jpg";
-        if($thumnail->isValid() && !$thumnail->hasMoved()){
-            $newName = $thumnail->getRandomName();
-            $lastId = model('ArticlesModel')->getLastId();
-            $thumnail->move('uploads/Images/'.$lastId, $newName);
-            echo "File uploaded successfully";
-        }else{
-            $newName = "Default_Image.jpg";
-            echo "File upload failed";
-        }
+        //_ Retrieve the request
+            $title = $this->request->getVar('title');
+            $subtitle = $this->request->getVar('subtitle');
+            $content = $this->request->getVar('editor');
+            $writer = session()->get('user_id');
+
+            $thumnail = $this->request->getFile('thumnail');
+            $category = $this->request->getVar('category');
+            $Tags = $this->request->getVar('Tags');
+            $Tags = explode(',', $Tags);
+        //_
+
+        //_ Check The Image
+            //TODO: add Ajax to make give error messeges if the image is not valid
+
+            if($thumnail->isValid() && !$thumnail->hasMoved()){
+                $newName = $thumnail->getRandomName();
+                $lastId = model('ArticlesModel')->getLastId();
+                $thumnail->move('uploads/Images/'.$lastId, $newName);
+                echo "File uploaded successfully";
+            }else{
+                $newName = "Default_Image.jpg";
+                echo "File upload failed";
+            }
+        //_
 
         $articleModel = model('ArticlesModel');
         $articleModel = new \ArticlesModel();
+        $TagsModel = model('tagsModel');
 
         print_r($writer);
         if($content == '')
             $content = "No Content";
 
+
+        //insert the tags
+        foreach($Tags as $tag){
+            $TagsModel->insert([
+                'name' => $tag,
+                'article' => $articleModel->getLastId()
+            ]);
+        }
         $articleModel->insert([
             'title' => $title,
             'subtitle' => $subtitle,
             'content' => $content,
             'writer' => $writer,
-            'thumnail' => $newName
+            'thumnail' => $newName,
+            'category' => $category
         ]);
         
         //print_r($content);
-        return redirect()->to('/show_Articles');
+       return redirect()->to('/show_Articles');
         
     }
 

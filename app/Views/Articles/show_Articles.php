@@ -20,6 +20,12 @@
 </style>
     <?php use App\Classes\Card_Article; ?>
     
+
+
+
+
+
+
     <div class="container-fluid">
     <div class='grid'>
         
@@ -42,5 +48,8 @@
     
 
 
+<script type="module">
 
+
+</script>
 <?= $this->endSection() ?>

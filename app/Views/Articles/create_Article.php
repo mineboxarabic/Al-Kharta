@@ -4,7 +4,7 @@
 
 
 
-<link href="<?= base_url()?>assets/libs/choices.js/public/assets/styles/choices.min.css" rel="stylesheet" type="text/css" />
+<link href="<?= base_url()?>assets/libs/choices.js/public/assets/styles/latestStyle.css" rel="stylesheet" type="text/css" />
 
 
 <form action="<?= base_url() . 'add_Article' ?>" method="post" enctype="multipart/form-data">
@@ -48,16 +48,26 @@
 
             </textarea>
             <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Chose Tags and categories to your Article</h4>
-                                <p class="card-title-desc">Tags and categories will help people to find your article</p>
-                            </div>
+                <div class="card-header">
+                    <h4 class="card-title">Chose Tags and categories to your Article</h4>
+                    <p class="card-title-desc">Tags and categories will help people to find your article</p>
+                </div>
 
-                            <div class="card-body">
-                                <div>
-                                <input id="demo-1" type="text" value="tag-1,tag-2" placeholder="Enter something">
-                                </div>
-                            </div>
+                <div class="card-body">
+                    <div>
+                        <input name="Tags" id="Tags" type="text" placeholder="Enter something">
+                        <select name="category" id="Categories">
+                            <?php 
+                                foreach($categories as $category)
+                                {
+                                    echo '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+                                }
+                            ?>
+                        </select>
+
+
+                    </div>
+                </div>
         <input type="submit" value="Save" class="btn btn-primary">
 
     </form>
@@ -233,32 +243,26 @@
 
             let thumnail = new ClickAbleImage(document.querySelector('#thumnail'));
 
-            var firstElement = document.getElementById('demo-1');
-            var choices1 = new Choices(firstElement, {
+            var TagsInput = document.getElementById('Tags');
+            var choices1 = new Choices(TagsInput, {
                 delimiter: ',',
                 editItems: true,
                 maxItemCount: 5,
                 removeItems: true,
-    removeItemButton: true,
+                removeItemButton: true,
             });
+
+            let Categories = document.getElementById('Categories');
+            //single select
+            var choices2 = new Choices(Categories);
 
             
         </script>
-        <style>
-          #container > div.card > div.card-body > div > div > div.choices__inner > div div{
-            background-color: #5156be;
-          }
-        </style>
+
 
 <!-- choices js -->
 <script src="<?= base_url() ?>assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
 
-
-
-<!-- init js -->
-<script src="<?= base_url() ?>assets/js/pages/form-advanced.init.js"></script>
-
-<script src="<?= base_url() ?>assets/js/app.js"></script>
 
 
 <?= $this->endSection() ?>

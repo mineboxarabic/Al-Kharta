@@ -2,9 +2,9 @@
 use CodeIgniter\Model;
 
 class tagsModel extends Model{
-    protected $table = 'tags';
+    protected $table = 'categories';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['name', 'logo', 'article'];
+    protected $allowedFields = ['*'];
     protected $returnType = 'array';
     protected $useTimestamps = false;
 
