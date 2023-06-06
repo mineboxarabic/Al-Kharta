@@ -1,6 +1,8 @@
 <?= $this->extend('Layouts/main') ?>
 
 <?= $this->section('content') ?>
+<link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script type="module" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <?php use App\Classes\Card_Article; ?>
 
 <style>
@@ -17,6 +19,14 @@
 
     object-fit: cover;
 }
+
+tbody{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
 </style>
 
 <!-- start page title -->
@@ -394,7 +404,6 @@
     </div>
 
 </div>
-
 
 
 <?= $this->endSection() ?>

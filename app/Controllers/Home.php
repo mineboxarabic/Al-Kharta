@@ -8,12 +8,12 @@ class Home extends BaseController
 	public function index()
 	{
 		
-		$tags = model('tagsModel');
+		$categories = model('CategoryModel');
 
-		$tags = $tags->findAll();
+		$categories = $categories->findAll();
 
 		$data = [
-			'tags' => $tags
+			'tags' => $categories
 		];
 		return view('Dashboard', $data);
 	}

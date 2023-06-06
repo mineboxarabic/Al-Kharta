@@ -11,8 +11,11 @@
         $random = rand(0,7);
 
     ?>
+    <form action="<?= base_url('ArticlesController/show_Filtered_Articles')?>">
+    <button type="submit" class="btn btn-<?= $randomClass[$random]?> "><i class="<?= $tag['logo'] ?>"></i>  <?= $tag['name'] ?></button>
+    <input type="text" value="<?=$tag['id']?>" name="category">
 
-    <button type="button" class="btn btn-<?= $randomClass[$random]?> "><i class="<?= $tag['logo'] ?>"></i>  <?= $tag['name'] ?></button>
+</form>
 
     <?php endforeach; ?>
 
@@ -27,7 +30,7 @@
                                 <h4 class="card-title">Special title treatment</h4>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional
                                     content.</p>
-                                <a href="<?= base_url() . 'create_Article'?>" class="btn btn-primary waves-effect waves-light w-100">Go somewhere</a>
+                                <a href="<?= base_url() . 'a'?>" class="btn btn-primary waves-effect waves-light w-100">Go somewhere</a>
                             </div>
                         </div>
                     </div>

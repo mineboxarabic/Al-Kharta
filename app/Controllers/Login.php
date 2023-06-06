@@ -90,6 +90,7 @@ class Login extends BaseController
     public function logout(){
         $session = session();
         $session->destroy();
+        $session->set('is_logged_in', false);
         return redirect()->to('/');
     }
 }

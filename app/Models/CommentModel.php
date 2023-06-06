@@ -1,11 +1,11 @@
 <?php 
 use CodeIgniter\Model;
 
-class CategoryModel extends Model{
-    protected $table = 'categories';
+class Commentmodel extends Model{
+    protected $table = 'comments';
     protected $primaryKey = 'id';
     protected $allowedFields = ['*'];
     protected $returnType = 'array';
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
 
 }

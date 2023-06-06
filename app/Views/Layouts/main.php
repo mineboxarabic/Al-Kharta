@@ -28,7 +28,7 @@
     <!-- App Css-->
     <link href="<?= base_url() ?>assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
 
@@ -1001,7 +1001,7 @@
     <script src="<?= base_url() ?>assets/js/app.js"></script>
 
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
 
