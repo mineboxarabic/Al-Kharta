@@ -36,8 +36,12 @@
     ?>
         <div class="col-lg-12">
             <?php
+
                 $user = new UsersModel();
                 $writer = $user->find($article['writer']);
+
+             
+
                 $article['username'] = $writer['username'];
                 $card = new Card_Article($article);
                 echo $card->getCard();

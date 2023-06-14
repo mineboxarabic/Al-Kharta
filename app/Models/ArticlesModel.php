@@ -6,7 +6,7 @@ class ArticlesModel extends Model{
     protected $primaryKey = 'id';
     //allow insert and update
 
-    protected $allowedFields = ['title', 'subtitle', 'content', 'writer', 'thumnail', 'category'];
+    protected $allowedFields = ['title', 'subtitle', 'content', 'writer', 'thumnail', 'category', 'lang'];
    // protected $allowedFields = ['*'];
     protected $returnType = 'array';
     protected $useTimestamps = true;

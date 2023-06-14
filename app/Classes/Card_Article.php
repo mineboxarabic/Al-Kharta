@@ -1,6 +1,7 @@
 <?php 
 
 namespace App\Classes;
+use App\Models;
 
 class Card_Article
 {
@@ -26,6 +27,15 @@ class Card_Article
         $this->btn_href = base_url('show_Article/'.$article['id']);
         $this->is_Writer =  session()->get('is_logged_in') == true && ($article['writer'] == session()->get('user_id') || session()->get('role') == 'admin');
 
+
+
+        if(!isset($this->article['username'])){
+            $userModel = new \UsersModel();
+            $user = $userModel->find($this->article['writer']);
+            $this->article['username'] = $user['username'];
+
+
+        }
 
     }
 

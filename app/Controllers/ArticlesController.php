@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ArticlesModel;
+
+use App\Classes\Articles_Grid;
+
 
 class ArticlesController extends BaseController
 {
@@ -172,6 +174,9 @@ class ArticlesController extends BaseController
         $newName = $this->Articles->find($id)['thumnail'];
         $category = $this->request->getVar('category');
         $Tags = $this->request->getVar('Tags');
+        $lnag = $this->request->getVar('lang');
+
+
         if($thumnail->isValid() && !$thumnail->hasMoved()){
 
             $newName = $thumnail->getRandomName();
@@ -213,11 +218,13 @@ class ArticlesController extends BaseController
             'content' => $content,
             'writer' => $writer,
             'thumnail' => $newName,
-            'category' => $category
+            'category' => $category,
+            'lang' => $lnag
         ]);
-        
-        //print_r($content);
+
         return redirect()->to('/show_Articles');
+        //print_r($content);
+        //return redirect()->to('/show_Articles');
     }
 
 
@@ -315,5 +322,39 @@ class ArticlesController extends BaseController
         ];
 
         return view('Articles/show_Articles', $data);
+    }
+
+    public function get_Article_with_Similar_Text($text){
+        $builder = $this->Articles->builder();
+        $builder->like('title', $text);
+        $builder->orLike('subtitle', $text);
+        $builder->orLike('content', $text);
+        $articles = $builder->get()->getResultArray();
+        $data = [
+            'articles' => $articles
+        ];
+
+        $Grid = new Articles_Grid($articles);
+        $grid = $Grid->getArticles();
+        return $grid;
+
+    }
+    public function get_Article_with_Similar_Text_DATA($text){
+        $page = $this->request->getVar('page');
+
+
+        $builder = $this->Articles->builder();
+        $builder->like('title', $text);
+        $builder->orLike('subtitle', $text);
+        $builder->orLike('content', $text);
+        $builder->limit(10, ($page-1)*10);
+
+        $articles = $builder->get()->getResultArray();
+        $data = [
+            'articles' => $articles
+        ];
+        return $articles;
+
+
     }
 }
