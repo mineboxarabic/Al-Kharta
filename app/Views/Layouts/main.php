@@ -33,6 +33,7 @@
 </head>
 
 <body data-layout="horizontal">
+<script src="<?= base_url() . 'assets/libs/super-build_ckeditor.js'?>"></script>
 
     <script>
         class EditableText {
@@ -1005,6 +1006,7 @@
 
 
 
+    
 
 
 

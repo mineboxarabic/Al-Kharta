@@ -104,7 +104,7 @@
             The "super-build" of CKEditor 5 served via CDN contains a large set of plugins and multiple editor types.
             See https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html#running-a-full-featured-editor-from-cdn
         -->
-<script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/super-build/ckeditor.js"></script>
+
 
 <script>
             // This sample still does not showcase all CKEditor 5 features (!)
